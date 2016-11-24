@@ -1,0 +1,16 @@
+{% import_yaml 'up1/defaults.yaml' as defaults %}
+{% import_yaml 'up1/osmap.yaml' as osmap %}
+
+{# get the settings for the os_family grain #}
+{% set osfam = salt['grains.filter_by'](osmap) or {} %}
+
+{# merge the os family/codename specific data over the defaults #}
+{% do defaults.up1.update(osfam) %}
+
+{# merge the pillar:lookup dict into the defaults/os specific dict #}
+{% set lookup = salt['pillar.get']('up1:lookup',
+                                   default=defaults.up1,
+                                   merge=True) %}
+
+{# merge the actual up1 pillar into the above combined dict #}
+{% set up1 = salt['pillar.get']('up1', default=lookup, merge=True) %}

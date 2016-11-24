@@ -1,0 +1,6 @@
+FreeBSD:
+  directory: /usr/local/www/up1
+  packages:
+    # Includes node
+    - npm
+  service: up1

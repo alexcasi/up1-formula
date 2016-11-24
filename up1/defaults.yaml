@@ -1,0 +1,7 @@
+up1:
+  git_url: https://github.com/Upload/Up1.git
+  git_rev: v1.0
+  user: up1
+  group: up1
+  service_enabled: true
+  server: {}
